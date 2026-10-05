@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>THE해커톤 · 버튼 3개</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <img src="assets/logo.png" alt="THE해커톤 로고" class="logo" />
+    <h1>THE해커톤</h1>
+    <p class="subtitle">버튼을 눌러 팀원들이 만든 프로그램을 실행해 보세요</p>
+  </header>
+
+  <main>
+    <nav class="buttons">
+      <button data-target="dino">
+        <span class="num">01</span>
+        <span class="label">공룡 게임</span>
+      </button>
+      <button data-target="dinner">
+        <span class="num">02</span>
+        <span class="label">저녁 메뉴 룰렛</span>
+      </button>
+      <button data-target="rps">
+        <span class="num">03</span>
+        <span class="label">가위바위보</span>
+      </button>
+    </nav>
+
+    <!-- 각 기능의 결과가 그려지는 영역. id는 바꾸지 마세요! -->
+    <section id="dino-area" class="area"></section>
+    <section id="dinner-area" class="area"></section>
+    <section id="rps-area" class="area"></section>
+
+    <p class="hint" id="hint">위 버튼 중 하나를 눌러보세요</p>
+  </main>
+
+  <footer>THE해커톤 : CAMPUS · 고려대</footer>
+
+  <!-- 기능 파일: 각자 자기 파일만 수정합니다 -->
+  <script src="features/dino.js"></script>
+  <script src="features/dinner.js"></script>
+  <script src="features/rps.js"></script>
+
+  <script>
+    // 버튼 연결 (공통 코드 — 수정하지 마세요)
+    const starters = {
+      dino: () => window.startDino?.(),
+      dinner: () => window.startDinner?.(),
+      rps: () => window.startRps?.(),
+    };
+
+    document.querySelectorAll('.buttons button').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const target = btn.dataset.target;
+
+        document.querySelectorAll('.buttons button').forEach((b) => b.classList.toggle('active', b === btn));
+        document.querySelectorAll('.area').forEach((a) => a.classList.toggle('show', a.id === `${target}-area`));
+        document.getElementById('hint').hidden = true;
+
+        starters[target]();
+      });
+    });
+  </script>
+</body>
+</html>

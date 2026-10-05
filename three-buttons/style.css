@@ -1,0 +1,129 @@
+/* THE해커톤 기본 스타일 (공통 — 수정하지 마세요) */
+:root {
+  --bg: #170a0e;
+  --card: #26131a;
+  --box: #7d0a1f;
+  --pink: #ff3b6b;
+  --text: #ffffff;
+  --sub: #d9c8cd;
+  --muted: #b9a3aa;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: radial-gradient(ellipse at top, #3a0a18 0%, var(--bg) 60%);
+  color: var(--text);
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+header {
+  text-align: center;
+  padding: 56px 16px 32px;
+}
+
+.logo {
+  width: min(260px, 70vw);
+  height: auto;
+}
+
+/* 보너스 미션(충돌 해결)에서 이 제목 줄 끝에 이름을 붙입니다 */
+h1 {
+  margin-top: 20px;
+  color: var(--pink);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.subtitle {
+  margin-top: 16px;
+  color: var(--sub);
+  font-size: 15px;
+}
+
+main {
+  flex: 1;
+  width: 100%;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0 16px 48px;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.buttons button {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 22px 20px;
+  text-align: left;
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid transparent;
+  border-radius: 6px;
+  font: inherit;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, transform 0.15s;
+}
+
+.buttons button:hover { border-color: var(--pink); transform: translateY(-2px); }
+.buttons button.active { background: var(--box); border-color: var(--pink); }
+
+.num { color: var(--pink); font-size: 22px; font-weight: 700; }
+.buttons button.active .num { color: var(--text); }
+.label { font-size: 17px; font-weight: 700; }
+
+.area {
+  display: none;
+  margin-top: 20px;
+  min-height: 320px;
+  padding: 28px;
+  background: var(--card);
+  border-radius: 6px;
+}
+.area.show { display: block; }
+
+.hint {
+  margin-top: 40px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* 아직 개발 전인 기능에 쓰는 안내 문구 */
+.placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 264px;
+  color: var(--sub);
+  text-align: center;
+}
+.placeholder strong { font-size: 20px; color: var(--text); }
+.placeholder code {
+  color: var(--pink);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+}
+
+footer {
+  padding: 24px 16px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+@media (max-width: 600px) {
+  .buttons { grid-template-columns: 1fr; }
+  .area { padding: 20px; }
+}
